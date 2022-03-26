@@ -29,22 +29,27 @@ public class Test {
 
     @org.junit.Test
     public void shouldPassWithInteger(){
-        shouldPass("[{\" name \" : 55}]");
+        shouldPass("[{\" number \" : 55}]");
     }
 
     @org.junit.Test
     public void shouldPassWithStringTrue(){
-        shouldPass("[{\"name\":true}]");
+        shouldPass("[{\"logic\":true}]");
     }
 
     @org.junit.Test
     public void shouldPassWithStringFalse(){
-        shouldPass("[{\"name\":null}]");
+        shouldPass("[{\"money\":null}]");
     }
 
     @org.junit.Test
     public void shouldPassWithNull(){
-        shouldPass("[{\"name\":false}]");
+        shouldPass("[{\"pain\":false}]");
+    }
+
+    @org.junit.Test
+    public void shouldPassWithT(){
+        shouldPass("[{\"name\":false}, {\"name\":\"вася\"}]");
     }
 
     @org.junit.Test
@@ -72,8 +77,10 @@ public class Test {
 
     @org.junit.Test
     public void shouldFailWithExtraBracket(){
-        shouldFail("[{\"\"name\"\":\"Вася\"}]");
+        shouldFail("[{\"name\":\"Вася\"}]]");
     }
+
+
 }
 
 

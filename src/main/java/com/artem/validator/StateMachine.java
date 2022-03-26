@@ -30,7 +30,7 @@ public class StateMachine {
         char symbol = str[position];
         switch (state.getState()){
             case 0 :
-                if(symbol == '['){
+                if (symbol == '['){
                     counterOfSquareBrackets++;
                     state.setState(1);
                 }
@@ -39,27 +39,20 @@ public class StateMachine {
                 }
                 return true;
             case 1 :
-                if(symbol == '{' && counterOfBraces == 0){
+                if (symbol == '{' && counterOfBraces == 0){
                     counterOfBraces++;
-                    state.setState(2);
                 }
-                else {
-                    return false;
-                }
-                return true;
-
-            case 2 :
-                if(symbol == '"'){
+                else if (symbol == '"'){
                     counterOfQuotes++;
                     state.setState(3);
                 }
-                else {
+                else if (!Character.isWhitespace(symbol)){
                     return false;
                 }
                 return true;
 
             case 3 :
-                if(Character.isDigit(symbol) || Character.isAlphabetic(symbol) || Character.isWhitespace(symbol)){
+                if (Character.isDigit(symbol) || Character.isAlphabetic(symbol) || Character.isWhitespace(symbol)){
                     state.setState(3);
                 }
                 else if (symbol == '"'){
@@ -72,7 +65,7 @@ public class StateMachine {
                 return true;
 
             case 4 :
-                if(symbol == '"' && counterOfQuotes == 0){
+                if (symbol == '"' && counterOfQuotes == 0){
                     counterOfQuotes++;
                     state.setState(5);
                 }
@@ -92,12 +85,13 @@ public class StateMachine {
                     colon = true;
                     state.setState(4);
                 }
-                else if(!Character.isWhitespace(symbol)){
+                else if (!Character.isWhitespace(symbol)){
                     return false;
                 }
                 return true;
+
             case 5 :
-                if(Character.isAlphabetic(symbol) || Character.isWhitespace(symbol) || Character.isDigit(symbol)){
+                if (Character.isAlphabetic(symbol) || Character.isWhitespace(symbol) || Character.isDigit(symbol)){
                     state.setState(5);
                 }
                 else if (symbol == '"' && counterOfQuotes == 1){
@@ -108,7 +102,6 @@ public class StateMachine {
                     return false;
                 }
                 return true;
-
 
             case 6 :
                 if (symbol == 'r' && counter == 0){
@@ -165,11 +158,11 @@ public class StateMachine {
                 if (Character.isDigit(symbol)){
                     state.setState(9);
                 }
-                else if(symbol == ','){
+                else if (symbol == ','){
                     colon = false;
-                    state.setState(2);
+                    state.setState(1);
                 }
-                else if(symbol == '}'){
+                else if (symbol == '}'){
                     counterOfBraces--;
                     state.setState(10);
                 }
@@ -183,14 +176,14 @@ public class StateMachine {
                     counterOfBraces--;
                     state.setState(10);
                 }
-                else if(symbol == ','){
+                else if (symbol == ','){
                     colon = false;
-                    state.setState(2);
+                    state.setState(1);
                 }
-                else if(symbol == ']' && counterOfSquareBrackets == 1){
+                else if (symbol == ']' && counterOfSquareBrackets == 1){
                     counterOfSquareBrackets--;
                 }
-                else {
+                else if (!Character.isWhitespace(symbol)){
                     return false;
                 }
                 return true;
