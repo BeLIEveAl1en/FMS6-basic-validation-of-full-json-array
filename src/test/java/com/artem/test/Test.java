@@ -49,7 +49,7 @@ public class Test {
 
     @org.junit.Test
     public void shouldPassWithT(){
-        shouldPass("[{\"name\":false}, {\"name\":\"вася\"}]");
+        shouldPass("[{\"name\":false, \"name\":{}}, {\"name\":\"вася\", \"name\":[]}]");
     }
 
     @org.junit.Test
@@ -79,8 +79,6 @@ public class Test {
     public void shouldFailWithExtraBracket(){
         shouldFail("[{\"name\":\"Вася\"}]]");
     }
-
-
 }
 
 

@@ -85,6 +85,12 @@ public class StateMachine {
                     colon = true;
                     state.setState(4);
                 }
+                else if (symbol == '{'){
+                    state.setState(11);
+                }
+                else if (symbol == '['){
+                    state.setState(12);
+                }
                 else if (!Character.isWhitespace(symbol)){
                     return false;
                 }
@@ -171,7 +177,25 @@ public class StateMachine {
                 }
                 return true;
 
-            case 10:
+            case 11 :
+                if (symbol == '}'){
+                    state.setState(10);
+                }
+                else {
+                    return false;
+                }
+                return true;
+
+            case 12 :
+                if (symbol == ']'){
+                    state.setState(10);
+                }
+                else {
+                    return false;
+                }
+                return true;
+
+            case 10 :
                 if (symbol == '}' && counterOfBraces == 1){
                     counterOfBraces--;
                     state.setState(10);
