@@ -23,62 +23,20 @@ public class Test {
     }
 
     @org.junit.Test
-    public void shouldPassWithWhitespace(){
-        shouldPass("[{\" name \" : \" Вася \"}]");
+    public void shouldPass(){
+        shouldPass("[\"a\",\"opl\"]");
     }
 
     @org.junit.Test
-    public void shouldPassWithInteger(){
-        shouldPass("[{\" number \" : 55}]");
-    }
-
-    @org.junit.Test
-    public void shouldPassWithStringTrue(){
-        shouldPass("[{\"logic\":true}]");
-    }
-
-    @org.junit.Test
-    public void shouldPassWithStringFalse(){
-        shouldPass("[{\"money\":null}]");
-    }
-
-    @org.junit.Test
-    public void shouldPassWithNull(){
-        shouldPass("[{\"pain\":false}]");
-    }
-
-    @org.junit.Test
-    public void shouldPassWithT(){
-        shouldPass("[{\"name\":false, \"name\":{}}, {\"name\":\"вася\", \"name\":[]}]");
-    }
-
-    @org.junit.Test
-    public void shouldPassWithTwoObj(){
-        shouldPass("[{" +
-                            "\"name\":true," +
-                            "\"lastName\":\"fff\"" +
-                       "}]");
+    public void shouldPassWithBrackets(){
+        shouldPass("[{},\"abc\"]");
     }
 
     @org.junit.Test
     public void shouldFailWithExtraLetter(){
-        shouldFail("[{\"name\"f:\"Вася\"}]");
+        shouldFail("[{}]]");
     }
 
-    @org.junit.Test
-    public void shouldFailWithTwoColon(){
-        shouldFail("[{\"name\"::\"Вася\"}]");
-    }
-
-    @org.junit.Test
-    public void shouldFailWithExtraQuotes(){
-        shouldFail("[{\"\"name\"\":\"Вася\"}]");
-    }
-
-    @org.junit.Test
-    public void shouldFailWithExtraBracket(){
-        shouldFail("[{\"name\":\"Вася\"}]]");
-    }
 }
 
 
