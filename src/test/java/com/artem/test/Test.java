@@ -33,8 +33,13 @@ public class Test {
     }
 
     @org.junit.Test
+    public void shouldPassWithBracket(){
+        shouldPass("[{}]");
+    }
+
+    @org.junit.Test
     public void shouldFailWithExtraLetter(){
-        shouldFail("[{}]]");
+        shouldFail("[{}[]");
     }
 
 }
