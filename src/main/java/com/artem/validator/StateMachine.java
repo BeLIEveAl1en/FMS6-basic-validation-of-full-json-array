@@ -8,6 +8,7 @@ public class StateMachine {
     private int counterOfQuotes = 0;
     private boolean counterOfSquareBrackets = true;
     private boolean counterOfBraces = true;
+    private boolean dotBuf = true;
     private final State state = new State(0);
 
     public ValidationResult validate(String inputStr){
@@ -26,7 +27,7 @@ public class StateMachine {
         return result;
     }
 
-    public boolean validationSymbol() {
+    private boolean validationSymbol() {
         char symbol = str[position];
         switch (state.getState()) {
             case 0:
@@ -53,6 +54,7 @@ public class StateMachine {
                     state.setState(5);
                 }
                 else if (Character.isDigit(symbol)){
+                    dotBuf = true;
                     state.setState(6);
                 }
                 else if (symbol == '{'){
@@ -140,6 +142,9 @@ public class StateMachine {
                 if (Character.isDigit(symbol)){
                     state.setState(6);
                 }
+                else if(symbol == '.' && dotBuf){
+                    dotBuf = false;
+                }
                 else if(symbol == ','){
                     state.setState(1);
                 }
@@ -157,18 +162,12 @@ public class StateMachine {
                     counterOfBraces = true;
                     state.setState(1);
                 }
-                else {
-                    return false;
-                }
                 return true;
 
             case 8:
                 if (symbol == ']') {
                     buf = true;
                     state.setState(1);
-                }
-                else {
-                    return false;
                 }
                 return true;
 

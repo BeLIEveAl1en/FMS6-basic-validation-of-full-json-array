@@ -23,18 +23,18 @@ public class Test {
     }
 
     @org.junit.Test
-    public void shouldPass(){
-        shouldPass("[\"a\",\"opl\"]");
+    public void shouldPassWithTwoElements(){
+        shouldPass("[{},\"abc\",44.7]");
     }
 
     @org.junit.Test
-    public void shouldPassWithBrackets(){
-        shouldPass("[{},\"abc\"]");
+    public void shouldPassWithArrayBracket(){
+        shouldPass("[{fewfhwofeh}]");
     }
 
     @org.junit.Test
-    public void shouldPassWithBracket(){
-        shouldPass("[{}]");
+    public void shouldPassWithSquareBracket(){
+        shouldPass("[[sefpsef]]");
     }
 
     @org.junit.Test
