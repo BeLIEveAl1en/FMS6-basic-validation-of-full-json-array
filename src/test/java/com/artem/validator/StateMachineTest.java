@@ -1,10 +1,9 @@
-package com.artem.test;
+package com.artem.validator;
 
-import com.artem.validator.StateMachine;
-import com.artem.validator.ValidationResult;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class Test {
+public class StateMachineTest {
 
     public void shouldPass(String str){
         StateMachine stateMachine = new StateMachine();
@@ -22,23 +21,33 @@ public class Test {
         Assert.assertFalse(result.getComment(), result.isValid());
     }
 
-    @org.junit.Test
-    public void shouldPassWithTwoElements(){
-        shouldPass("[{},\"abc\",44.7]");
+    @Test
+    public void shouldPassWithAllElements(){
+        shouldPass("[[],{},\"abc\",44.7]");
     }
 
-    @org.junit.Test
-    public void shouldPassWithArrayBracket(){
+    @Test
+    public void shouldPassWithJSONObj(){
         shouldPass("[{fewfhwofeh}]");
     }
 
-    @org.junit.Test
-    public void shouldPassWithSquareBracket(){
+    @Test
+    public void shouldPassWithJSONArray(){
         shouldPass("[[sefpsef]]");
     }
 
-    @org.junit.Test
-    public void shouldFailWithExtraLetter(){
+    @Test
+    public void shouldFailWithExtraDot(){
+        shouldFail("[4..96]");
+    }
+
+    @Test
+    public void shouldFailWithExtraQuote(){
+        shouldFail("[\"tot\"\"]");
+    }
+
+    @Test
+    public void shouldFailWithEMissingBracket(){
         shouldFail("[{}[]");
     }
 
